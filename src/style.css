@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+}
+
+header{
+    background-color: rgb(244, 240, 240) !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    gap: 20px;
+}
+
