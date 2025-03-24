@@ -2,30 +2,40 @@
     $titlepage = 'add item';
     require('./src/header.php');
 
+    $errors = array('email' => '', 'title' => '', 'ingredients' => '');
+
+    $email = $title = $ingredients = '';
+
     if (isset($_GET['submit'])) {
 
         //email check
         if(empty($_GET['email'])){
-            echo 'please enter an email' . '</br>';
+            $errors['email'] = 'please enter an email' . '</br>';
         } else {
-            // $email = $_POST['email'];
-            // if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            //     echo 'enter a valid email address';
-            // };
+            $email = $_GET['email'];
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $errors['email'] = 'enter a valid email address';
+            };
         }
 
         //title check
         if(empty($_GET['title'])){
-            echo 'please enter a title' . '</br>';
+            $errors['title'] = 'please enter a title' . '</br>';
         } else {
-            echo htmlspecialchars($_GET['title']);
+            $title = $_GET['title'];
         }
 
         //ingredients check
         if(empty($_GET['ingredients'])){
-            echo 'please enter ingredients' . '</br>';
+            $errors['ingredients'] = 'please enter ingredients' . '</br>';
         } else {
-            echo htmlspecialchars($_GET['ingredients']);
+            $ingredients = $_GET['ingredients'];
+        }
+
+        if(array_filter($errors)) {
+
+        } else{
+            header("location: index.php");
         }
         
 
@@ -37,11 +47,20 @@
 <div>
     <form action="add.php" method="GET">
         <h2>Add a Pizza</h2>
-        <input type="email" name="email" placeholder="Enter email">
-        <input type="text" name="title" placeholder="Enter pizza title">
-        <input type="text" name="ingredients" placeholder="Enter Ingredients">
         <div>
-            <input type="submit" name="submit">
+            <input type="email" name="email" placeholder="Enter email" value="<?= $email ?>">
+            <span> <?= $errors['email'] ?> </span>
         </div>
+        <div>
+            <input type="text" name="title" placeholder="Enter pizza title" value="<?= $title ?>">
+            <span> <?= $errors['title'] ?> </span>
+        </div>
+        <div>
+            <input type="text" name="ingredients" placeholder="Enter Ingredients" value="<?= $ingredients ?>">
+            <span> <?= $errors['ingredients'] ?> </span>
+        </div>
+        <span>
+            <input type="submit" name="submit">
+        </span>
     </form>
 </div>

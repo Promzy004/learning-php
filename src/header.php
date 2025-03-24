@@ -24,7 +24,11 @@
         margin-bottom: 15px;
     }
 
-    form > input{
+    form > div{
+        width: 100%;
+    }
+
+    form input{
         width: 100%;
         height: 40px;
     }

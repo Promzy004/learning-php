@@ -72,11 +72,37 @@
 </html> -->
 
 
+<?php 
+
+    //using mySQLi(procedural style)
+    $conn = mysqli_connect('localhost', 'promise', 'Pro1234,', 'netninja_db');
+
+
+
+    //check connection
+    if(!$conn) {
+        echo 'connection error' . mysqli_connect_error();
+    }
+
+    //query database
+    $sql = 'SELECT * FROM pizza';
+
+    //make query and get result
+    $result = mysqli_query($conn, $sql);
+
+    //making the result an associative array
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    print_r($rows);
+
+?>
+
 <?php
     $titlepage = 'Home page';
     include('./src/header.php');
 
 ?>
+
 
 
 <main>
