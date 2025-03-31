@@ -40,7 +40,7 @@
             Logo
         </div>
         <nav>
-            <a href="">Home</a>
+            <a href="index.php">Home</a>
             <a href="">Contact Us</a>
             <a href="add.php">add a pizza</a>
         </nav>

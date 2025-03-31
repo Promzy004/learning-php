@@ -1,6 +1,7 @@
 <?php
     $titlepage = 'add item';
     require('./src/header.php');
+    require('./src/config/db_connect.php');
 
     $errors = array('email' => '', 'title' => '', 'ingredients' => '');
 
@@ -35,7 +36,13 @@
         if(array_filter($errors)) {
 
         } else{
-            header("location: index.php");
+            $sql = "INSERT INTO pizza(title, ingredients, email) VALUES('$title', '$ingredients', '$email')";
+            if(mysqli_query($conn, $sql)){
+                header("location: index.php");
+            }else {
+                echo 'error message : ' . mysqli_error($conn);
+            }
+            
         }
         
 

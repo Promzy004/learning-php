@@ -74,15 +74,7 @@
 
 <?php 
 
-    //using mySQLi(procedural style)
-    $conn = mysqli_connect('localhost', 'promise', 'Pro1234,', 'netninja_db');
-
-
-
-    //check connection
-    if(!$conn) {
-        echo 'connection error' . mysqli_connect_error();
-    }
+    require('./src/config/db_connect.php');
 
     //query database
     $sql = 'SELECT * FROM pizza';
@@ -93,7 +85,13 @@
     //making the result an associative array
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-    print_r($rows);
+    //free the resource from memory
+    mysqli_free_result($result);
+
+    //close the connection
+    mysqli_close($conn);
+
+    
 
 ?>
 
@@ -101,12 +99,38 @@
     $titlepage = 'Home page';
     include('./src/header.php');
 
+    if(isset($_POST['submit'])) {
+        $video = $_FILES['video'];
+        echo '<pre>';
+            print_r($video);
+        echo '</pre>';
+    } else {
+        echo 'not set';
+    }
+
 ?>
 
 
 
+
+
 <main>
-    <form action="">Register</form>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;text-align: center;">
+            <?php foreach($rows as $pizza) :?>
+
+                <div style="background-color: green; padding: 20px;">
+                    <h2 style="color: red;"> <?php echo $pizza['title'] ?> </h2>
+                    <ul>
+                     <li><?php echo $pizza['ingredients'] ?> </li>
+                    </ul>
+                    <a href='details.php?id=<?= $pizza['id'] ?>'>See more</a>
+                </div>
+                
+                
+            <?php endforeach; ?>
+            </div>
+    </form>
 </main>
 
 <?php
