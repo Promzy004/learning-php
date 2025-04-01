@@ -34,14 +34,28 @@
     }
 </style>
 
+<?php
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    session_start();
+
+    if($_SERVER['QUERY_STRING'] == 'noname') {
+        unset($_SESSION['name']);
+    }
+
+    $name = $_SESSION['name'] ?? 'Guest';
+
+?>
+
 <body>
     <header>
         <div class="logo">
             Logo
         </div>
-        <nav>
-            <a href="index.php">Home</a>
-            <a href="">Contact Us</a>
+        <nav style="display: flex; justify-content: center; align-items: center;">
+            <h4> <?= "Hello $name" ?> </h4> |
             <a href="add.php">add a pizza</a>
         </nav>
     </header>
