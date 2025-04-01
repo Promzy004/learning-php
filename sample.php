@@ -11,18 +11,26 @@
     // echo $val;
 
 
-//superglobals
+// //superglobals
 
-    echo $_SERVER['SERVER_NAME'] . '</br>';
-    echo $_SERVER['REQUEST_METHOD'] . '</br>';  
-    echo $_SERVER['SCRIPT_FILENAME'] . '</br>';  
-    echo $_SERVER['PHP_SELF'] . '</br>';  
+//     echo $_SERVER['SERVER_NAME'] . '</br>';
+//     echo $_SERVER['REQUEST_METHOD'] . '</br>';  
+//     echo $_SERVER['SCRIPT_FILENAME'] . '</br>';  
+//     echo $_SERVER['PHP_SELF'] . '</br>';  
+
+session_start();
+if(isset($_POST['submit'])) {
+    $_SESSION['name'] = $_POST['username'];
+    header('Location: index.php');
+}
+
 
 ?>
 
 <main>
     <form action="" method="POST" enctype="multipart/form-data">
-        <input type="submit">
+        <input type="text" name="username" >
+        <input type="submit" name="submit">
     </form>
 </main>
 

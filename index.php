@@ -73,7 +73,7 @@
 
 
 <?php 
-
+    session_start();
     require('./src/config/db_connect.php');
 
     //query database
@@ -117,6 +117,7 @@
 <main>
     <form action="" method="POST" enctype="multipart/form-data">
         <div style="display: flex; flex-wrap: wrap; gap: 20px;text-align: center;">
+            <h2><?= $_SESSION['name'] ?></h2>
             <?php foreach($rows as $pizza) :?>
 
                 <div style="background-color: green; padding: 20px;">
@@ -129,7 +130,7 @@
                 
                 
             <?php endforeach; ?>
-            </div>
+        </div>
     </form>
 </main>
 
