@@ -84,6 +84,10 @@
     //making the result an associative array
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+    if(mysqli_num_rows($result) == 0){
+        echo 'no item found';
+    }
+
     //free the resource from memory
     mysqli_free_result($result);
 

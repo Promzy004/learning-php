@@ -15,6 +15,7 @@
         $sql = "DELETE FROM pizza WHERE id = $delete_id";
 
         $result = mysqli_query($conn, $sql);
+
         if($result) {
             header('Location: index.php');
         } else{

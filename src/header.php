@@ -46,6 +46,7 @@
     }
 
     $name = $_SESSION['name'] ?? 'Guest';
+    $gender = $_COOKIE['gender'] ?? 'rand';
 
 ?>
 
@@ -55,7 +56,7 @@
             Logo
         </div>
         <nav style="display: flex; justify-content: center; align-items: center;">
-            <h4> <?= "Hello $name" ?> </h4> |
+            <h4> <?= "Hello $name ($gender)" ?> </h4> |
             <a href="add.php">add a pizza</a>
         </nav>
     </header>
